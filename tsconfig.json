@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib/js",
+    "rootDirs": ["./src/main/ts","./src/test/ts"],
+    "allowJs": true,
+    "target": "es6",
+    "module": "commonjs"
+  },
+  "include": [
+    "./src/main/ts/"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

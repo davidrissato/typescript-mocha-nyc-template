@@ -1,0 +1,81 @@
+{
+  "name": "typescript-mocha-nyc-template",
+  "version": "1.0.0",
+  "license": "ISC",
+  "description": "Template for creating node.js projects running with TypeScript + Mocha (testing framework) + Nyc (coverage tests) + ES-Lint",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidrissato/typescript-mocha-nyc-template.git"
+  },
+  "author": "David Rissato Cruz <davidrc@gmail.com>",
+  "homepage": "https://github.com/davidrissato/typescript-mocha-nyc-template#README.md",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint ./src/main/ts",
+    "build": "rm -rf lib && tsc",
+    "test": "npm run lint && cross-env NODE_ENV=test nyc mocha --bail --recursive --compilers ts:ts-node/register,tsx:ts-node/register src/test/ts/",
+    "install": "npm run build",
+    "watch-test": "nodemon --exec \"npm test\" --watch src --watch package.json"
+  },
+  "dependencies": {
+    "@types/chai-as-promised": "0.0.31",
+    "@types/node": "^7.0.28"
+  },
+  "engines": {
+    "node": ">=7",
+    "npm": ">3"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.0",
+    "@types/mocha": "^2.2.41",
+    "@types/sinon": "^2.3.1",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "cross-env": "^5.0.0",
+    "eslint": "^3.19.0",
+    "mocha": "^3.4.2",
+    "nodemon": "^1.11.0",
+    "nyc": "^10.3.2",
+    "sinon": "^2.3.1",
+    "ts-node": "^3.0.6",
+    "tsc": "^1.20150623.0",
+    "typescript": "^2.3.4",
+    "typescript-eslint-parser": "^3.0.0"
+  },
+  "nyc": {
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": true,
+    "instrument": true,
+    "exclude": [
+      "typings"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "src/main/ts/*.ts",
+      "src/main/ts/**/*.ts"
+    ],
+    "all": true
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended"
+    ],
+    "parser": "typescript-eslint-parser",
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "env": {
+      "es6": true
+    }
+  }
+}
